@@ -139,4 +139,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+# Temporary static root for heroku
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
