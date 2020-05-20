@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Bug list{% endblock %}
+
+{% block page_heading %}Bug list{% endblock %}
+
+{% block content %}
+
+    <!-- Show bugs -->
+    {% for bug in bugs %}
+    <div class="row row-flex">
+        <div class="col-12 display panel panel-default">
+            <div class="panel-body">
+                <h3>{{ bug.title }}</h3>
+
+                <p class="bug-description">{{ bug.description }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}
