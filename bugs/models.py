@@ -12,6 +12,7 @@ class Bug(models.Model):
         ('Done', 'Done')
     )
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='to do')
+    author = models.ForeignKey(User, related_name='author_bug', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title
