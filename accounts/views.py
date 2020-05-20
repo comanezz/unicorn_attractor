@@ -41,9 +41,6 @@ def registration(request):
     if request.method == "POST":
         registration_form = UserRegistrationForm(request.POST)
 
-        """we already specified the model inside of our meta class on our registration form
-        we don't need to specify model again here
-        """
         if registration_form.is_valid():
             registration_form.save()
 
