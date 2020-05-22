@@ -10,14 +10,14 @@ def all_bugs(request):
     bugs = Bug.objects.all()
     return render(request, "bugs.html", {"bugs": bugs})
 
-def bug_detail(request, pk):
+def bug_detail(request, pk, slug):
     """
     Create a view that returns a single
     Bug object based on the bug ID (pk) and
     render it to the 'bugdetail.html' template.
     Or return a 404 error if the post is not found
     """
-    bug = get_object_or_404(Bug, pk=pk)
+    bug = get_object_or_404(Bug, pk=pk, slug=slug)
     # bug.views += 1
     # bug.save()
     return render(request, "bugdetail.html", {'bug': bug})
