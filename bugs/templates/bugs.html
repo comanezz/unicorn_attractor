@@ -13,7 +13,7 @@
             <div class="panel-body">
                 <h3>{{ bug.title }}</h3>
 
-                <p class="bug-description">{{ bug.description }}</p>
+                <p class="bug-description">{{ bug.description|truncatewords:30 }}</p>
                 <p class="bug-status">Status: {{ bug.status }}</p>
             </div>
         </div>
