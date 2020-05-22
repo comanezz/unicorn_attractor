@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block page_title %}Bug: {{ bug.title }} {% endblock %}
+
+
+{% block content %}
+
+    <div class="row row-flex">
+        <div class="col-xs-11 display panel panel-default">
+            <div class="panel-body">
+                <h3>{{ bug.title }}</h3>
+
+                <p class="bug-description">{{ bug.description }}</p>
+                <p class="bug-status">Status: {{ bug.status }}</p>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
