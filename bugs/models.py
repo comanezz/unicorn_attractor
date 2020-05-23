@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.utils import timezone
+from django.urls import reverse
 
 # Create your models here.
 class Bug(models.Model):
@@ -33,3 +34,6 @@ class Bug(models.Model):
             self.created_date = timezone.now()
         self.modified_date = timezone.now()
         super(Bug, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("bug_detail", args=[self.id, self.slug])

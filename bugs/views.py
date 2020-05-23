@@ -23,7 +23,7 @@ def bug_detail(request, pk, slug):
     return render(request, "bugdetail.html", {'bug': bug})
 
 @login_required
-def create_or_edit_bug(request, pk=None):
+def create_or_edit_bug(request, pk=None, slug=None):
     """
     Create a view that allows us to create
     or edit a bug depending if the Post ID
@@ -37,7 +37,7 @@ def create_or_edit_bug(request, pk=None):
             bug.author = request.user
             bug.save()
             # Need to change the redirect to bug detail when I have created it.
-            return redirect(all_bugs)
+            return redirect(bug.get_absolute_url())
     else:
         form = BugForm(instance=bug)
 
