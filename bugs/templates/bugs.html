@@ -16,6 +16,7 @@
                 <p class="bug-description">{{ bug.description|truncatewords:30 }}</p>
                 <p class="bug-status">Status: {{ bug.status }}</p>
                 <p class="bug-author">Created by: {{ bug.author }}</p>
+                <p class="bug-created-date"><small>Published: {{ bug.created_date }}</small></p>
                 <a class="btn btn-primary" href="{% url 'bug_detail' bug.pk bug.slug %}" role="button">View</a>
             </div>
         </div>
