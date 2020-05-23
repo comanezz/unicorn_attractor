@@ -18,8 +18,6 @@ def bug_detail(request, pk, slug):
     Or return a 404 error if the post is not found
     """
     bug = get_object_or_404(Bug, pk=pk, slug=slug)
-    # bug.views += 1
-    # bug.save()
     return render(request, "bugdetail.html", {'bug': bug})
 
 @login_required
