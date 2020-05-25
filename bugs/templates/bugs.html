@@ -17,6 +17,7 @@
                 <p class="bug-status">Status: {{ bug.status }}</p>
                 <p class="bug-author">Created by: {{ bug.author }}</p>
                 <p class="bug-created-date"><small>Published: {{ bug.created_date }}</small></p>
+                <p class="bug-total-upvotes"><small>{{ bug.total_upvotes }} User{{ bug.total_upvotes | pluralize}} affected by this issue </small></p>
                 <a class="btn btn-primary" href="{{ bug.get_absolute_url }}" role="button">View</a>
             </div>
         </div>
