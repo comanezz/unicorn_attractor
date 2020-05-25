@@ -35,8 +35,9 @@ def create_or_edit_bug(request, pk=None, slug=None):
     bug = get_object_or_404(Bug, pk=pk) if pk else None
 
     # if the user is not equal to the creator of the bug post show error 404
-    if bug.author != request.user:
-        raise Http404()
+    if bug is not None:
+        if bug.author != request.user:
+            raise Http404()
 
     if request.method == "POST":
         form = BugForm(request.POST, instance=bug)
