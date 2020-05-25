@@ -42,7 +42,7 @@ class Bug(models.Model):
         super(Bug, self).save(*args, **kwargs)
 
 class Comment(models.Model):
-    post = models.ForeignKey(Bug)
+    bug = models.ForeignKey(Bug)
     author = models.ForeignKey(User)
     comment = models.TextField()
 
