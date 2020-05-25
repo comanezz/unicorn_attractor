@@ -15,6 +15,16 @@
                 <p class="bug-author">Created by: {{ bug.author }}</p>
                 <p class="bug-created-date">Published: {{ bug.created_date }}</p>
                 <p class="bug-modified-date"><small>Modified: {{ bug.modified_date }}</small></p>
+
+                {% for comment in comments %}
+                <div class="row">
+                    <div class="comments">
+                        <p>{{ comment.comment}}</p>
+                        <p></p>
+                    </div>
+                </div>
+                {% endfor %}
+
                 <form action="{% url 'upvote_bug' %}" method="POST">
                     {% csrf_token %}
                     {% if is_upvoted %}

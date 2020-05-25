@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Bug
+from .models import Bug, Comment
 from .forms import BugForm
 from django.http import Http404
 
@@ -19,11 +19,16 @@ def bug_detail(request, pk, slug):
     Or return a 404 error if the post is not found
     """
     bug = get_object_or_404(Bug, pk=pk, slug=slug)
+    # Upvoted part
     is_upvoted = False
     # Checks if current user had previously upvoted the bug
     if bug.upvotes.filter(id=request.user.id).exists():
         is_upvoted = True
-    return render(request, "bugdetail.html", {'bug': bug, 'is_upvoted': is_upvoted})
+
+    # Comment part
+    comments = Comment.objects.filter(bug=bug)
+
+    return render(request, "bugdetail.html", {'bug': bug, 'is_upvoted': is_upvoted, "comments": comments})
 
 @login_required
 def create_or_edit_bug(request, pk=None, slug=None):
