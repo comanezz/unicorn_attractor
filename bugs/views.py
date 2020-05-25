@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Bug
 from .forms import BugForm
+from django.http import Http404
 
 # Create your views here.
 def all_bugs(request):
@@ -32,6 +33,11 @@ def create_or_edit_bug(request, pk=None, slug=None):
     is null or not
     """
     bug = get_object_or_404(Bug, pk=pk) if pk else None
+
+    # if the user is not equal to the creator of the bug post show error 404
+    if bug.author != request.user:
+        raise Http404()
+
     if request.method == "POST":
         form = BugForm(request.POST, instance=bug)
         if form.is_valid():
