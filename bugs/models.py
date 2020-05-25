@@ -44,7 +44,7 @@ class Bug(models.Model):
 class Comment(models.Model):
     bug = models.ForeignKey(Bug)
     author = models.ForeignKey(User)
-    comment = models.TextField()
+    comment = models.TextField(max_length=160)
 
     def __str__(self):
-        return self.comment
+        return '{}-{}'.format(str(self.bug.title), str(self.author.username))
