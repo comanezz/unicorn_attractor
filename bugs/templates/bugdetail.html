@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load bootstrap_tags %}
+
 {% block page_title %}Bug: {{ bug.title }} {% endblock %}
 
 
@@ -16,14 +18,23 @@
                 <p class="bug-created-date">Published: {{ bug.created_date }}</p>
                 <p class="bug-modified-date"><small>Modified: {{ bug.modified_date }}</small></p>
 
-                {% for comment in comments %}
-                <div class="row">
-                    <div class="comments">
-                        <p>{{ comment.comment}}</p>
-                        <p></p>
-                    </div>
+                {% if request.user.is_authenticated %}
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ comment_form | as_bootstrap }}
+                    <button type="submit" class="btn btn-info">Submit</button>
+                </form>
+                {% endif %}
+
+                <hr>
+
+                <div class="main-comment-section">
+                    {{ comments.count }} Comment{{ comments|pluralize }}
+                    {% for comment in comments %}
+                        <p class="">{{ comment.context }}</p>
+                        <p>- by {{ comment.author|capfirst }}</p>
+                    {% endfor %}
                 </div>
-                {% endfor %}
 
                 <form action="{% url 'upvote_bug' %}" method="POST">
                     {% csrf_token %}

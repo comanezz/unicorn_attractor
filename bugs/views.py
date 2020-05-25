@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Bug, Comment
-from .forms import BugForm
+from .forms import *
 from django.http import Http404
 
 # Create your views here.
@@ -26,9 +26,26 @@ def bug_detail(request, pk, slug):
         is_upvoted = True
 
     # Comment part
-    comments = Comment.objects.filter(bug=bug)
+    comments = Comment.objects.filter(bug=bug).order_by('-id')
 
-    return render(request, "bugdetail.html", {'bug': bug, 'is_upvoted': is_upvoted, "comments": comments})
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST or None)
+        if comment_form.is_valid():
+            context = request.POST.get('context')
+            comment = Comment.objects.create(bug=bug, author=request.user, context=context)
+            comment.save()
+            return redirect(bug.get_absolute_url())
+    else:
+        comment_form = CommentForm()
+
+    context = {
+        'bug': bug,
+        'is_upvoted': is_upvoted,
+        'comments': comments,
+        'comment_form': comment_form
+        }
+
+    return render(request, "bugdetail.html", context)
 
 @login_required
 def create_or_edit_bug(request, pk=None, slug=None):
