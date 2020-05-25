@@ -8,7 +8,7 @@ from accounts.forms import UserLoginForm, UserRegistrationForm
 def logout(request):
     """Log the user out"""
     auth.logout(request)
-    messages.success(request, "You have successfully been logged out!")
+    messages.success(request, "You have successfully been logged out!", extra_tags="alert alert-success")
     return redirect(reverse('index'))
 
 def login(request):
@@ -25,7 +25,7 @@ def login(request):
             
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You have successfully logged in!")
+                messages.success(request, "You have successfully logged in!", extra_tags="alert alert-success")
                 return redirect(reverse('index'))
             else:
                 login_form.add_error(None, "Your username or password is incorrect")
@@ -50,10 +50,10 @@ def registration(request):
             # Once the user has been authenticated we can log him in
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You have successfully registered")
+                messages.success(request, "You have successfully registered", extra_tags="alert alert-success")
                 return redirect(reverse('index'))
             else:
-                messages.error(request, "Unable to register your account at this time")
+                messages.error(request, "Unable to register your account at this time", extra_tags="alert alert-danger")
     else:
         registration_form = UserRegistrationForm()
     return render(request, 'registration.html', {"registration_form": registration_form})

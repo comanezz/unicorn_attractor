@@ -45,13 +45,13 @@
         </div>
     </nav>
     {% if messages %}
-        <div class="alert alert-success">
+        {% for message in messages %}
+        <div class="{{ message.tags }}">
             <div class="messages">
-                {% for message in messages %}
                     {{ message }}
-                {% endfor %}
             </div>
         </div>
+        {% endfor %}
     {% endif %}
 
     <div class="container">
