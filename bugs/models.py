@@ -40,3 +40,11 @@ class Bug(models.Model):
         """
         self.modified_date = timezone.now()
         super(Bug, self).save(*args, **kwargs)
+
+class Comment(models.Model):
+    post = models.ForeignKey(Bug)
+    author = models.ForeignKey(User)
+    comment = models.TextField()
+
+    def __str__(self):
+        return self.comment
