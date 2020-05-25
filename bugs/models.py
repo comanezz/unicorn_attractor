@@ -28,7 +28,7 @@ class Bug(models.Model):
         return self.upvotes.count()
 
     def get_absolute_url(self):
-        return reverse("bug_detail", args=[self.id, self.slug])
+        return reverse("bug_detail", args=[str(self.id), str(self.slug)])
 
     def save(self, *args, **kwargs):
         """ This will automatically creates a slug when we create or edit a bug
@@ -36,8 +36,7 @@ class Bug(models.Model):
         """
         self.slug = slugify(self.title)
 
-        """ On save, update timestamps """
-        if not self.id:
-            self.created_date = timezone.now()
+        """ On save, update timestamps. Update the modified date when a post has been updated.
+        """
         self.modified_date = timezone.now()
         super(Bug, self).save(*args, **kwargs)
