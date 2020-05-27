@@ -26,13 +26,19 @@ def bug_detail(request, pk, slug):
         is_upvoted = True
 
     # Comment part
-    comments = Comment.objects.filter(bug=bug).order_by('-id')
+    comments = Comment.objects.filter(bug=bug, reply=None).order_by('-id')
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST or None)
         if comment_form.is_valid():
             context = request.POST.get('context')
-            comment = Comment.objects.create(bug=bug, author=request.user, context=context)
+            reply_id = request.POST.get('comment_id')
+            comment_qs = None
+
+            if reply_id:
+                comment_qs = Comment.objects.get(id=reply_id)
+
+            comment = Comment.objects.create(bug=bug, author=request.user, context=context, reply=comment_qs)
             comment.save()
             return redirect(bug.get_absolute_url())
     else:
@@ -56,7 +62,7 @@ def create_or_edit_bug(request, pk=None, slug=None):
     """
     bug = get_object_or_404(Bug, pk=pk) if pk else None
 
-    # if the user is not equal to the creator of the bug post show error 404
+    # if the user is not equal to the creator of the bug post he will not be able to edit the post
     if bug is not None:
         if bug.author != request.user:
             messages.error(request, "This is not your post, you can't edit", extra_tags="alert alert-danger")
