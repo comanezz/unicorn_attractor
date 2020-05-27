@@ -46,6 +46,7 @@ class Comment(models.Model):
     author = models.ForeignKey(User)
     context = models.TextField(max_length=200)
     created_date = models.DateTimeField(default=timezone.now)
+    reply = models.ForeignKey('self', null=True, related_name="replies", blank=True)
 
     def __str__(self):
         return '{}-{}'.format(str(self.bug.title), str(self.author.username))
