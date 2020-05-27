@@ -44,7 +44,8 @@ class Bug(models.Model):
 class Comment(models.Model):
     bug = models.ForeignKey(Bug)
     author = models.ForeignKey(User)
-    context = models.TextField(max_length=160)
+    context = models.TextField(max_length=200)
+    created_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return '{}-{}'.format(str(self.bug.title), str(self.author.username))
