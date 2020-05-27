@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static from staticfiles %}
+
 {% load bootstrap_tags %}
 
 {% block page_title %}Bug: {{ bug.title }} {% endblock %}
@@ -19,11 +21,15 @@
                 <p class="bug-modified-date"><small>Modified: {{ bug.modified_date }}</small></p>
 
                 {% if request.user.is_authenticated %}
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ comment_form | as_bootstrap }}
-                    <button type="submit" class="btn btn-info">Submit</button>
-                </form>
+                <div class="container-fluid">
+                    <div class="row form-group">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ comment_form | as_bootstrap }}
+                            <button type="submit" class="btn btn-info">Submit</button>
+                        </form>
+                    </div>
+                </div>
                 {% endif %}
 
                 <hr>
@@ -32,7 +38,26 @@
                     {{ comments.count }} Comment{{ comments|pluralize }}
                     {% for comment in comments %}
                         <p class="">{{ comment.context }}</p>
-                        <p>- by {{ comment.author|capfirst }}</p>
+                        <p>- by {{ comment.author|capfirst }}. <small>{{ comment.created_date }}</small></p>
+                        <button class="reply-btn btn btn-primary btn-sm">Reply</button>
+
+                        <div class="replied-comments container-fluid" style="display: none;">
+                            {% for reply in comment.replies.all %}
+                            <p class="">{{ reply.context }}</p>
+                            <p>- by {{ reply.author|capfirst }}</p>
+                            {% endfor %}
+
+                            {% if request.user.is_authenticated %}
+                                <div class="row form-group">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                                        {{ comment_form | as_bootstrap }}
+                                        <button type="submit" class="btn btn-info">Submit</button>
+                                    </form>
+                                </div>
+                            {% endif %}
+                        </div>
                     {% endfor %}
                 </div>
 
@@ -52,4 +77,8 @@
         </div>
     </div>
     
+{% endblock %}
+
+{% block footer_js %}
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
