@@ -1,6 +1,7 @@
 body {
-    font-family: Arial;
-    padding-top: 50px;
+    padding-top: 56px;
+    font-size: 15px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 footer {
@@ -11,59 +12,49 @@ footer {
     color: #A9A9A9;
 }
 
-.icon-bar {
-    background-color: #fff;
+.main-title {
+    color: #40ace9;
 }
-
-.accountform {
-    padding-top: 20px;
-}
-
-.badge {
-    padding-left: 9px;
-    padding-right: 9px;
-    -webkit-border-radius: 9px;
-    -moz-border-radius: 9px;
-    border-radius: 9px;
-}
-
-.label-warning[href],
-.badge-warning[href] {
-    background-color: #c67605;
-}
-
-.product {
-    background-size: contain;
-    background-position: center center;
+/* ----------------  Navbar --------------- */
+/* Taken from bootswatch nav */
+.nav-color {
+    background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
     background-repeat: no-repeat;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
+    background-image: -webkit-linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
+    background-image: -o-linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#54b4eb), color-stop(60%, #2fa4e7), to(#1d9ce5));
+}
+
+/* ----------------  Bug detail page --------------- */
+.add-bug-btn {
+    font-size: 16px;
+}
+
+.replied-comments p {
+    word-wrap: break-word;
+}
+
+/* ----------------------------------  Media */
+@media (min-width: 768px){
+    /* ------ Navbar-------- */
+    .navbar-expand-md .navbar-collapse {
+        justify-content: flex-end;
+    }
+
+    .navbar-expand-md .navbar-nav .nav-link {
+        padding-right: .75rem;
+        padding-left: .75rem;
+    }
+
+    .nav-item > a:hover {
+        color: white;
+        text-decoration: underline;
+    }
 }
 
 /* So within our caption paragraph, which is where we describe the product, 
 we're putting in some word-wrap so that the text will wrap within the <div>, or within the paragraph, 
 and won't overflow. */
-caption p {
+/* caption p {
     word-wrap: break-word;
-}
-
-.row.row-flex {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.panel-default {
-    border-color: transparent;
-    padding: 0 10px;
-}
-
-.panel-body {
-    height: 100%;
-    border: 1px solid #ddd;
-}
-
-.product-description {
-    min-height: 40px;
 }
