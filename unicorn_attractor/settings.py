@@ -135,6 +135,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+# Found this on Slack.
 # If env.py exists use Local Static Files
 if os.path.exists('env.py'):
     print("Using Local Static File.")
