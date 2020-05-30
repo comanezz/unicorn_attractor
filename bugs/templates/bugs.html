@@ -3,7 +3,7 @@
 {% block page_title %}Bug list{% endblock %}
 
 {% block content %}
-
+<div id="all-bugs">
     <div class="row mb-3">
         <div class="col-6">
             <h1 class="mt-4 main-title">Bug list</h1>
@@ -17,34 +17,36 @@
     </div>
 
     <!-- Show bugs -->
-        {% for bug in bugs %}
-            {% if forloop.counter0|divisibleby:2 %} <div class="row"> {% endif %}
-                <div class="col-md-6">
-                    <div class="card mb-5">
-                        <div class="card-body">
-                            <a href="{{ bug.get_absolute_url }}"><h3 class="card-title mt-1 border-bottom">{{ bug.title|truncatechars:29 }}</h3></a>
-                            <div class="card-text">
-                                <p class="bug-description">{{ bug.description|truncatewords:15 }}</p>
-                                <p class="bug-author">Created by: {{ bug.author }}</p>
-                                <p class="bug-created-date"><small>Published: {{ bug.created_date }}</small></p>
-                            </div>
-                        </div>
-                        <div class="card-footer text-muted">
-                            <p class="bug-total-upvotes">
-                                <small>
-                                    {{ bug.total_upvotes }} Vote{{ bug.total_upvotes | pluralize}}
-                                </small>
-                            </p>
-                            <p><small>
-                                Comment:{{ bug.comment__bug__count | pluralize }} {{ bug.comment__bug__count }}
-                            </small>
-                            </p>
-                            <p class="bug-status"><small>Status: {{ bug.status }}</small></p>
-                        </div>
+    {% for bug in bugs %}
+    {% if forloop.counter0|divisibleby:2 %} <div class="row"> {% endif %}
+        <div class="col-md-6">
+            <div class="card mb-5">
+                <div class="card-body">
+                    <a href="{{ bug.get_absolute_url }}">
+                        <h3 class="card-title mt-1 border-bottom">{{ bug.title|truncatechars:29 }}</h3>
+                    </a>
+                    <div class="card-text">
+                        <p class="bug-description">{{ bug.description|truncatewords:15 }}</p>
+                        <p class="bug-author">Created by: {{ bug.author }}</p>
+                        <p class="bug-created-date"><small>Published: {{ bug.created_date }}</small></p>
                     </div>
                 </div>
-            {%  if forloop.counter|divisibleby:2 or forloop.last %}</div>{% endif %}
+                <div class="card-footer text-muted">
+                    <p class="bug-total-upvotes">
+                        <small>
+                            {{ bug.total_upvotes }} Vote{{ bug.total_upvotes | pluralize}}
+                        </small>
+                    </p>
+                    <p><small>
+                            Comment:{{ bug.comment__bug__count | pluralize }} {{ bug.comment__bug__count }}
+                        </small>
+                    </p>
+                    <p class="bug-status"><small>Status: {{ bug.status }}</small></p>
+                </div>
+            </div>
+        </div>
+        {%  if forloop.counter|divisibleby:2 or forloop.last %}</div>{% endif %}
 
-        {% endfor %}
-
+    {% endfor %}
+</div>
 {% endblock %}
