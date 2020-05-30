@@ -8,7 +8,7 @@ from django.urls import reverse
 class Bug(models.Model):
     title = models.CharField(max_length=150, default='', blank=False)
     description = models.TextField()
-    slug = models.SlugField(max_length=120)
+    slug = models.SlugField(max_length=150)
     created_date = models.DateTimeField(editable=False, default=timezone.now)
     modified_date = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, related_name='author_bug', on_delete=models.CASCADE, null=True)
