@@ -4,9 +4,9 @@
 
 {% block page_title %}Log a bug{% endblock %}
 
-{% block page_heading %}Log a bug {% endblock %}
-
 {% block content %}
+
+    <h1 class="mt-4 main-title">Log a bug</h1>
 
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
