@@ -25,14 +25,32 @@ footer {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#54b4eb), color-stop(60%, #2fa4e7), to(#1d9ce5));
 }
 
-/* ----------------  Bug detail page --------------- */
+/* ----------------  Bug pages --------------- */
+.card {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.card-title, .card-body a {
+    color: #4e98c3;
+}
+
+.card-title, .card-text .bug-description {
+    height: 3em;
+    overflow: hidden;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
 .add-bug-btn {
     font-size: 16px;
 }
 
-.replied-comments p {
+/* .replied-comments p {
     word-wrap: break-word;
-}
+} */
 
 /* ----------------------------------  Media */
 @media (min-width: 768px){
