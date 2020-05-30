@@ -3,12 +3,13 @@ from django.contrib.auth.decorators import login_required
 from .models import Bug, Comment
 from .forms import *
 from django.contrib import messages
+from django.db.models import Count
 
 # Create your views here.
 def all_bugs(request):
     """ View all bug list
     """
-    bugs = Bug.objects.all()
+    bugs = Bug.objects.all().annotate(Count('comment__bug'))
     return render(request, "bugs.html", {"bugs": bugs})
 
 def bug_detail(request, pk, slug):
