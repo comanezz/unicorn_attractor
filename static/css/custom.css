@@ -27,11 +27,15 @@ footer {
 }
 
 /* ----------------  Bug pages --------------- */
-/* ---------- All bugs ---------- */
 .card {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 }
 
+.bug-author, .comment-author {
+    color: #4e98c3
+}
+
+/* ---------- All bugs ---------- */
 .card-title, .card-body a {
     color: #4e98c3;
 }
@@ -41,7 +45,7 @@ footer {
     overflow: hidden;
 }
 
-.card-footer {
+#all-bugs .card-footer {
     display: flex;
     justify-content: space-between;
 }
@@ -55,6 +59,23 @@ footer {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+/* ---- Comment section ---- */
+#bug-detail .replied-comments-section {
+    display: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#bug-detail .main-comment {
+    border-bottom: 1px dashed #efefef;
+    margin-bottom: 25px;
+}
+
+#bug-detail .replied-comment {
+    border-bottom: 1px dashed #efefef;
+    margin-bottom: 25px;
+}
+
 
 /* .replied-comments p {
     word-wrap: break-word;
