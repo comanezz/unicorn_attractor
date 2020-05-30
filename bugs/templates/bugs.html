@@ -27,7 +27,7 @@
                     </a>
                     <div class="card-text">
                         <p class="bug-description">{{ bug.description|truncatewords:15 }}</p>
-                        <p class="bug-author">Created by: {{ bug.author }}</p>
+                        <small><p class="bug-author"><span class="text-dark">Created by:</span> {{ bug.author|capfirst }}</p></small>
                         <p class="bug-created-date"><small>Published: {{ bug.created_date }}</small></p>
                     </div>
                 </div>
