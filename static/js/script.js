@@ -1,5 +1,5 @@
 $(document).ready(function(){
     $('.reply-btn').click(function(){
-        $(this).next('.replied-comments').fadeToggle();
+        $(this).parent().parent().next('.replied-comments').fadeToggle();
     });
 });
