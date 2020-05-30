@@ -14,6 +14,7 @@ footer {
 
 .main-title {
     color: #40ace9;
+    margin-bottom: 10px;
 }
 /* ----------------  Navbar --------------- */
 /* Taken from bootswatch nav */
@@ -26,6 +27,7 @@ footer {
 }
 
 /* ----------------  Bug pages --------------- */
+/* ---------- All bugs ---------- */
 .card {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 }
@@ -34,7 +36,7 @@ footer {
     color: #4e98c3;
 }
 
-.card-title, .card-text .bug-description {
+#all-bugs .card-title, #all-bugs .card-text .bug-description {
     height: 3em;
     overflow: hidden;
 }
@@ -46,6 +48,12 @@ footer {
 
 .add-bug-btn {
     font-size: 16px;
+}
+
+/* ---------- Bug detail ---------- */
+#bug-detail .card-footer .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 /* .replied-comments p {

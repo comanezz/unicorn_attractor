@@ -9,34 +9,73 @@
 
 {% block content %}
 
-    <div class="row row-flex">
-        <div class="col-xs-11 display panel panel-default">
-            <div class="panel-body">
-                <h3>{{ bug.title }}</h3>
-
-                <p class="bug-description">{{ bug.description }}</p>
-                <p class="bug-status">Status: {{ bug.status }}</p>
-                <p class="bug-author">Created by: {{ bug.author }}</p>
-                <p class="bug-created-date">Published: {{ bug.created_date }}</p>
-                <p class="bug-modified-date"><small>Modified: {{ bug.modified_date }}</small></p>
-
-                {% if request.user.is_authenticated %}
-                <div class="container-fluid">
-                    <div class="row form-group">
-                        <form method="POST">
-                            {% csrf_token %}
-                            {{ comment_form | as_bootstrap }}
-                            <button type="submit" class="btn btn-info">Submit</button>
-                        </form>
+<div id="bug-detail">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-5 mt-4">
+                <div class="card-body">
+                    <h3 class="card-title mt-1 pb-2 border-bottom">{{ bug.title }}</h3>
+                    <div class="card-text">
+                        <p class="bug-description">{{ bug.description }}</p>
+                        <p class="bug-author">Created by: {{ bug.author }}</p>
                     </div>
                 </div>
-                {% endif %}
+                <div class="card-footer text-muted">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 col-md-7 d-flex justify-content-between">
+                                <form action="{% url 'upvote_bug' %}" method="POST">
+                                    {% csrf_token %}
+                                    {% if is_upvoted %}
+                                    <button class="btn btn-danger btn-sm" type="submit" name="bug_id" value="{{ bug.id }}"><i
+                                            class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                                    {% else %}
+                                    <button class="btn btn-primary btn-sm" type="submit" name="bug_id" value="{{ bug.id }}"><i
+                                            class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                                    {% endif %}
+                                </form>
+                                <p class="bug-total-upvotes">
+                                    <small>
+                                        {{ bug.total_upvotes }} Vote{{ bug.total_upvotes | pluralize}}
+                                    </small>
+                                </p>
+                                <p><small>
+                                        Comment{{ comments|pluralize }}: {{ comments.count }}
+                                    </small>
+                                </p>
+                                <p class="bug-status"><small>Status: {{ bug.status }}</small></p>
+                            </div>
+                            <div class="col-12 col-md-5 d-flex justify-content-center">
+                                <p class="bug-modified-date"><small>Published: {{ bug.modified_date }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <hr>
+        <div class="row">
+            <div class="col display panel panel-default">
+                <div class="panel-body">
 
-                <div class="main-comment-section">
-                    {{ comments.count }} Comment{{ comments|pluralize }}
-                    {% for comment in comments %}
+                    {% if request.user.is_authenticated %}
+                    <div class="container-fluid">
+                        <div class="row form-group">
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ comment_form | as_bootstrap }}
+                                <button type="submit" class="btn btn-info">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <hr>
+
+                    <div class="main-comment-section">
+                        {{ comments.count }} Comment{{ comments|pluralize }}
+                        {% for comment in comments %}
                         <p class="">{{ comment.context }}</p>
                         <p>- by {{ comment.author|capfirst }}. <small>{{ comment.created_date }}</small></p>
                         <button class="reply-btn btn btn-primary btn-sm">Reply</button>
@@ -48,37 +87,30 @@
                             {% endfor %}
 
                             {% if request.user.is_authenticated %}
-                                <div class="row form-group">
-                                    <form method="POST">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="comment_id" value="{{ comment.id }}">
-                                        {{ comment_form | as_bootstrap }}
-                                        <button type="submit" class="btn btn-info">Submit</button>
-                                    </form>
-                                </div>
+                            <div class="row form-group">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                                    {{ comment_form | as_bootstrap }}
+                                    <button type="submit" class="btn btn-info">Submit</button>
+                                </form>
+                            </div>
                             {% endif %}
                         </div>
-                    {% endfor %}
-                </div>
+                        {% endfor %}
+                    </div>
 
-                <form action="{% url 'upvote_bug' %}" method="POST">
-                    {% csrf_token %}
-                    {% if is_upvoted %}
-                    <button class="btn btn-danger" type="submit" name="bug_id" value="{{ bug.id }}">This issue does not affect me</button> 
-                    {% else %}
-                    <button class="btn btn-success" type="submit" name="bug_id" value="{{ bug.id }}">This issue affects me</button>
-                    {% endif %}
-                </form>
-                <!-- Only the author of the bug can edit the bug post -->
-                {% if request.user.pk == bug.author.pk %}
+                    <!-- Only the author of the bug can edit the bug post -->
+                    {% if request.user.pk == bug.author.pk %}
                     <a class="btn btn-primary" href="{% url 'edit_bug' bug.pk bug.slug %}" role="button">Edit</a>
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-    
+</div>
+
 {% endblock %}
 
 {% block footer_js %}
-    <script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
