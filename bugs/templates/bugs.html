@@ -38,7 +38,7 @@
                         </small>
                     </p>
                     <p><small>
-                            Comment:{{ bug.comment__bug__count | pluralize }} {{ bug.comment__bug__count }}
+                            Comment{{ bug.comment__bug__count | pluralize }}: {{ bug.comment__bug__count }}
                         </small>
                     </p>
                     <p class="bug-status"><small>Status: {{ bug.status }}</small></p>
