@@ -44,7 +44,7 @@ class Feature(models.Model):
 class Comment(models.Model):
     feature = models.ForeignKey(Feature)
     author = models.ForeignKey(User, related_name='feature_comment_author')
-    context = models.TextField(max_length=200)
+    context = models.TextField(max_length=300)
     created_date = models.DateTimeField(default=timezone.now)
     reply = models.ForeignKey('self', null=True, related_name="feature_replies", blank=True)
 
