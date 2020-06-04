@@ -31,7 +31,7 @@ class Feature(models.Model):
         return reverse("feature_detail", args=[str(self.id), str(self.slug)])
 
     def save(self, *args, **kwargs):
-        """ This will automatically creates a slug when we create or edit a bug
+        """ This will automatically creates a slug when we create or edit a feature
             Find on https://books.agiliq.com/projects/django-orm-cookbook/en/latest/slugfield.html
         """
         self.slug = slugify(self.title)
@@ -40,3 +40,13 @@ class Feature(models.Model):
         """
         self.modified_date = timezone.now()
         super(Feature, self).save(*args, **kwargs)
+
+class Comment(models.Model):
+    feature = models.ForeignKey(Feature)
+    author = models.ForeignKey(User, related_name='feature_comment_author')
+    context = models.TextField(max_length=200)
+    created_date = models.DateTimeField(default=timezone.now)
+    reply = models.ForeignKey('self', null=True, related_name="feature_replies", blank=True)
+
+    def __str__(self):
+        return '{}-{}'.format(str(self.feature.title), str(self.author.username))
