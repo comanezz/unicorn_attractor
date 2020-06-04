@@ -19,7 +19,7 @@ def feature_detail(request, pk, slug):
     render it to the 'featuredetail.html' template.
     Or return a 404 error if the post is not found
     """
-    feature = get_object_or_404(feature, pk=pk, slug=slug)
+    feature = get_object_or_404(Feature, pk=pk, slug=slug)
     # Upvoted part
     is_upvoted = False
     # Checks if current user had previously upvoted the feature
@@ -75,10 +75,21 @@ def create_or_edit_feature(request, pk=None, slug=None):
             feature = form.save(commit=False)
             feature.author = request.user
             feature.save()
-            # Uncomment once I set up feature detail view correctly
-            # return redirect(feature.get_absolute_url())
-            return redirect(all_features)
+            return redirect(feature.get_absolute_url())
+
     else:
         form = FeatureForm(instance=feature)
 
     return render(request, 'featureform.html', {'form': form})
+
+@login_required
+def upvote_feature(request):
+    # Allow user to upvote or remove the vote from the feature. User have to be logged.
+    feature = get_object_or_404(feature, id=request.POST.get('feature_id'))
+    if feature.upvotes.filter(id=request.user.id).exists():
+        feature.upvotes.remove(request.user)
+        is_upvoted = False
+    else:
+        feature.upvotes.add(request.user)
+        is_upvoted = True
+    return redirect(feature.get_absolute_url())
