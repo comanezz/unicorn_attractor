@@ -27,7 +27,7 @@ def bug_detail(request, pk, slug):
         is_upvoted = True
 
     # Comment part
-    comments = Comment.objects.filter(bug=bug, reply=None).order_by('-id')
+    comments = Comment.objects.filter(bug=bug, reply=None).order_by('id')
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST or None)
