@@ -9,6 +9,7 @@ body {
     position: relative;
     min-height: 100%;
 }
+
 .padding-bottom-100 {
     padding-bottom: 100px;
 }
@@ -39,60 +40,59 @@ footer {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#54b4eb), color-stop(60%, #2fa4e7), to(#1d9ce5));
 }
 
-/* ----------------  Bug pages --------------- */
+/* ----------------  Bug & Feature pages --------------- */
 .card {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 }
 
-.bug-author, .comment-author {
+.bug-author,
+.feature-author,
+.comment-author {
     color: #4e98c3
 }
 
-/* ---------- All bugs ---------- */
+/* ---------- All bugs & All features ---------- */
 .card-title, .card-body a {
     color: #4e98c3;
 }
 
-#all-bugs .card-title, #all-bugs .card-text .bug-description {
+#all-bugs .card-title, #all-bugs .card-text .bug-description,
+#all-features .card-title, #all-features .card-text .feature-description {
     height: 3em;
     overflow: hidden;
 }
 
-#all-bugs .card-footer {
+.card-footer {
     display: flex;
     justify-content: space-between;
 }
 
-.add-bug-btn {
+.add-bug-btn,
+.add-feature-btn {
     font-size: 16px;
 }
 
-/* ---------- Bug detail ---------- */
-#bug-detail .card-footer .container-fluid {
+/* ---------- Bug detail & Feature detail ---------- */
+.card-footer .container-fluid {
     padding-left: 0px;
     padding-right: 0px;
 }
 
 /* ---- Comment section ---- */
-#bug-detail .replied-comments-section {
+.replied-comments-section {
     display: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-#bug-detail .main-comment {
+.main-comment {
     border-bottom: 1px dashed #efefef;
     margin-bottom: 25px;
 }
 
-#bug-detail .replied-comment {
+.replied-comment {
     border-bottom: 1px dashed #efefef;
     margin-bottom: 25px;
 }
-
-
-/* .replied-comments p {
-    word-wrap: break-word;
-} */
 
 /* ----------------------------------  Media */
 @media (min-width: 768px){
@@ -110,11 +110,4 @@ footer {
         color: white;
         text-decoration: underline;
     }
-}
-
-/* So within our caption paragraph, which is where we describe the product, 
-we're putting in some word-wrap so that the text will wrap within the <div>, or within the paragraph, 
-and won't overflow. */
-/* caption p {
-    word-wrap: break-word;
 }
