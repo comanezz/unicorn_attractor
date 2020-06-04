@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load bootstrap_tags %}
+
+{% block page_title %}Log a feature{% endblock %}
+
+{% block content %}
+
+    <h1 class="mt-4 main-title">Log a feature</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form | as_bootstrap }}
+        <button type="submit" class="btn btn-info">Save</button>
+    </form>
+    
+{% endblock %}
