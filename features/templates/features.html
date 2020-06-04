@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Bug list{% endblock %}
+
+{% block content %}
+<div id="all-bugs">
+    <div class="row mb-3">
+        <div class="col-6">
+            <h1 class="mt-4 main-title">Feature list</h1>
+        </div>
+        <div class="col-6 d-flex justify-content-end align-items-center">
+            <!-- udpate href -->
+            <a href="#" class="add-bug-btn"><i class="fa fa-plus-square"></i> New Feature</a>
+        </div>
+        <div class="col">
+            <p>Log, comment and upvote features below</p>
+        </div>
+    </div>
+
+    <!-- Show features -->
+    <!-- {% for bug in bugs %}
+    {% if forloop.counter0|divisibleby:2 %} <div class="row"> {% endif %}
+        <div class="col-md-6">
+            <div class="card mb-5">
+                <div class="card-body">
+                    <a href="{{ bug.get_absolute_url }}">
+                        <h3 class="card-title mt-1 border-bottom">{{ bug.title|truncatechars:29 }}</h3>
+                    </a>
+                    <div class="card-text">
+                        <p class="bug-description">{{ bug.description|truncatewords:15 }}</p>
+                        <small><p class="bug-author"><span class="text-dark">Created by:</span> {{ bug.author|capfirst }}</p></small>
+                        <p class="bug-created-date"><small>Published: {{ bug.created_date }}</small></p>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <p class="bug-total-upvotes">
+                        <small>
+                            {{ bug.total_upvotes }} Vote{{ bug.total_upvotes | pluralize}}
+                        </small>
+                    </p>
+                    <p><small>
+                            Comment{{ bug.comment__bug__count | pluralize }}: {{ bug.comment__bug__count }}
+                        </small>
+                    </p>
+                    <p class="bug-status"><small>Status: {{ bug.status }}</small></p>
+                </div>
+            </div>
+        </div>
+        {%  if forloop.counter|divisibleby:2 or forloop.last %}</div>{% endif %}
+
+    {% endfor %} -->
+</div>
+{% endblock %}
