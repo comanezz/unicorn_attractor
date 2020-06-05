@@ -8,20 +8,56 @@
 
 {% block content %}
 
-    {% if cart_items %}
-        {% for item in cart_items %}
+    <div id="card">
+        <div class="row mb-3">
+            <div class="col">
+                <h1 class="mt-4 main-title">Cart</h1>
+            </div>
+        </div>
+        {% if cart_items %}
+            {% for item in cart_items %}
 
-        <p>{{ item.feature.title }}</p>
-        <form method="post" action="{% url 'adjust_cart' item.id %}">
-            {% csrf_token %}
-            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
-        </form>
+            {% if forloop.counter0|divisibleby:2 %} <div class="row"> {% endif %}
+                <div class="col-md-6">
+                    <div class="card mb-5">
+                        <div class="card-body">
+                            <a href="{{ feature.get_absolute_url }}">
+                                <h3 class="card-title mt-1 border-bottom">{{ item.feature.title|truncatechars:29 }}</h3>
+                            </a>
+                            <div class="card-text">
+                                <p class="feature-description">{{ item.feature.description|truncatewords:15 }}</p>
+                                <small><p class="feature-author"><span class="text-dark">Created by:</span> {{ item.feature.author|capfirst }}</p></small>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted justify-content-center">
+                            <form method="post" action="{% url 'adjust_cart' item.id %}">
+                                {% csrf_token %}
+                                <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {%  if forloop.counter|divisibleby:2 or forloop.last %}</div>{% endif %}
 
-        {% endfor %}
-    {% else %}
+            {% endfor %}
 
-    <p>Nothing boy</p>
+            <div class="row">
+                <div class="col">
+                    <p>Your Total:</p>
+                    <p><i class="fa fa-eur" aria-hidden="true"></i>{{ total }}</p>
+                    <a href="#" class="btn btn-success btn-sm" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+                </div>
+            </div>
+        {% else %}
 
-    {% endif %}
+        <div class="row">
+            <div class="col">
+                <h3>Your cart is empty!</h3>
+            </div>
+        </div>
+
+        {% endif %}
+    </div>
+
 
 {% endblock %}
