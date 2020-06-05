@@ -36,7 +36,11 @@
                     <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log Out</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i> Cart</a>
+                    <a class="nav-link" href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i> Cart
+                        {% if feature_count > 0 %}
+                            <label class="badge badge-light">{{ feature_count }}</label>
+                        {% endif %}
+                    </a>
                 </li>
             {% else %}
                 <li class="nav-item active">
