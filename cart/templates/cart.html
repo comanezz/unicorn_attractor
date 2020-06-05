@@ -12,6 +12,10 @@
         {% for item in cart_items %}
 
         <p>{{ item.feature.title }}</p>
+        <form method="post" action="{% url 'adjust_cart' item.id %}">
+            {% csrf_token %}
+            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+        </form>
 
         {% endfor %}
     {% else %}

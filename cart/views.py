@@ -24,3 +24,14 @@ def add_to_cart(request, id):
 
     request.session['cart'] = cart
     return redirect('all_features')
+
+def adjust_cart(request, id):
+    """
+    Remove the item
+    """
+    cart = request.session.get('cart', {})
+
+    cart.pop(id)
+
+    request.session['cart'] = cart
+    return redirect(reverse('view_cart'))
