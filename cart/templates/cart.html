@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% load bootstrap_tags %}
+
+{% block page_title %}Cart{% endblock %}
+
+{% block content %}
+
+    {% if cart_items %}
+        {% for item in cart_items %}
+
+        <p>{{ item.feature.title }}</p>
+
+        {% endfor %}
+    {% else %}
+
+    <p>Nothing boy</p>
+
+    {% endif %}
+
+{% endblock %}
