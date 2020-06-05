@@ -9,15 +9,16 @@ def view_cart(request):
 
 @login_required()
 def add_to_cart(request, id):
-    """Add a quantity of the specified product to the cart"""
+    """Add a quantity of the specified feature to the cart, not more than once"""
 
     # Not using a form inside the feature detail html page so need to set up the quantity in the view page.
     quantity = 1
 
     cart = request.session.get('cart', {})
 
-    if id in cart:
-        cart[id] = int(cart[id]) + quantity
+    # https://stackoverflow.com/questions/1602934/check-if-a-given-key-already-exists-in-a-dictionary
+    if id in cart.keys():
+        messages.error(request, "Feature already added", extra_tags="alert alert-danger")
     else:
         cart[id] = cart.get(id, quantity)
         messages.success(request, "Feature successfully added to the cart", extra_tags="alert alert-success")
