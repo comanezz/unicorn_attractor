@@ -26,6 +26,7 @@ def add_to_cart(request, id):
     request.session['cart'] = cart
     return redirect('all_features')
 
+@login_required()
 def adjust_cart(request, id):
     """
     Remove the item
