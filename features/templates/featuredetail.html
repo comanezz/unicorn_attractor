@@ -25,6 +25,7 @@
             <div class="card mb-4 mt-4">
                 <div class="card-body">
                     <h3 class="card-title mt-1 pb-2 border-bottom">{{ feature.title }}</h3>
+                    <a href="{% url 'add_to_cart' feature.id %}">Test add cart item</a>
                     <div class="card-text">
                         <p class="feature-description">{{ feature.description }}</p>
                         <small><p class="feature-author"><span class="text-dark">Created by:</span> {{ feature.author|capfirst }}</p></small>
