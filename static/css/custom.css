@@ -94,6 +94,17 @@ footer {
     margin-bottom: 25px;
 }
 
+/* ---------- Checkout page ---------- */
+legend {
+    color: #555555;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.total {
+    color: #4e98c3;
+}
+
 /* ----------------------------------  Media */
 @media (min-width: 768px){
     /* ------ Navbar-------- */
