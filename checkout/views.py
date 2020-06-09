@@ -46,6 +46,13 @@ def checkout(request):
             
             if customer.paid:
                 messages.success(request, "You have successfully paid", extra_tags="alert alert-success")
+
+                # Allow us to add a +1 upvote when customer paid
+                for id, quantity in cart.items():
+                    feature = get_object_or_404(Feature, pk=id)
+                    feature.upvotes += 1
+                    feature.save()
+
                 request.session['cart'] = {}
                 return redirect(reverse('all_features'))
             else:
