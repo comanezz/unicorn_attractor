@@ -22,7 +22,7 @@ class Feature(models.Model):
 
     # Ordered by the most recent modified date
     class Meta:
-        ordering = ('-modified_date',)
+        ordering = ('-created_date',)
 
     def get_absolute_url(self):
         return reverse("feature_detail", args=[str(self.id), str(self.slug)])

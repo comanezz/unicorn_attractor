@@ -22,7 +22,7 @@ class Bug(models.Model):
 
     # Ordered by the most recent modified date
     class Meta:
-        ordering = ('-modified_date',)
+        ordering = ('-created_date',)
 
     def total_upvotes(self):
         return self.upvotes.count()
