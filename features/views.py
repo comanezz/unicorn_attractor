@@ -20,11 +20,6 @@ def feature_detail(request, pk, slug):
     Or return a 404 error if the post is not found
     """
     feature = get_object_or_404(Feature, pk=pk, slug=slug)
-    # Upvoted part
-    is_upvoted = False
-    # Checks if current user had previously upvoted the feature
-    if feature.upvotes.filter(id=request.user.id).exists():
-        is_upvoted = True
 
     # Comment part
     comments = Comment.objects.filter(feature=feature, reply=None).order_by('id')
@@ -47,7 +42,6 @@ def feature_detail(request, pk, slug):
 
     context = {
         'feature': feature,
-        'is_upvoted': is_upvoted,
         'comments': comments,
         'comment_form': comment_form
         }
@@ -81,15 +75,3 @@ def create_or_edit_feature(request, pk=None, slug=None):
         form = FeatureForm(instance=feature)
 
     return render(request, 'featureform.html', {'form': form})
-
-@login_required
-def upvote_feature(request):
-    # Allow user to upvote or remove the vote from the feature. User have to be logged.
-    feature = get_object_or_404(Feature, id=request.POST.get('feature_id'))
-    if feature.upvotes.filter(id=request.user.id).exists():
-        feature.upvotes.remove(request.user)
-        is_upvoted = False
-    else:
-        feature.upvotes.add(request.user)
-        is_upvoted = True
-    return redirect(feature.get_absolute_url())
