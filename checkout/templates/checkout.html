@@ -25,9 +25,7 @@
             <div class="col-md-6">
                 <div class="card mb-5">
                     <div class="card-body">
-                        <a href="{{ feature.get_absolute_url }}">
-                            <h3 class="card-title mt-1 border-bottom">{{ item.feature.title|truncatechars:29 }}</h3>
-                        </a>
+                        <h3 class="card-title mt-1 border-bottom">{{ item.feature.title|truncatechars:29 }}</h3>
                         <div class="card-text">
                             <p class="feature-description">{{ item.feature.description|truncatewords:15 }}</p>
                             <small><p class="feature-author"><span class="text-dark">Created by:</span> {{ item.feature.author|capfirst }}</p></small>
