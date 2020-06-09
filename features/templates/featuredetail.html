@@ -25,7 +25,6 @@
             <div class="card mb-4 mt-4">
                 <div class="card-body">
                     <h3 class="card-title mt-1 pb-2 border-bottom">{{ feature.title }}</h3>
-                    <a href="{% url 'add_to_cart' feature.id %}">Test add cart item</a>
                     <div class="card-text">
                         <p class="feature-description">{{ feature.description }}</p>
                         <small><p class="feature-author"><span class="text-dark">Created by:</span> {{ feature.author|capfirst }}</p></small>
@@ -37,7 +36,7 @@
                             <div class="col-12 col-md-7 d-flex justify-content-between">
                                 {% if request.user.is_authenticated %}
                                 <div>
-                                    <a href="#" class="btn btn-primary btn-sm">
+                                    <a href="{% url 'add_to_cart' feature.id %}" class="btn btn-primary btn-sm">
                                         <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                                     </a>
                                 </div>
