@@ -40,6 +40,19 @@ footer {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#54b4eb), color-stop(60%, #2fa4e7), to(#1d9ce5));
 }
 
+/* ----------------  Home page --------------- */
+#home-page-top .main-title h1 {
+    font-size: 2.2rem;
+}
+
+#home-page-content .card-title {
+    height: 100%;
+}
+
+#home-page-content .card-footer div a:first-of-type {
+    margin-right: 15px;
+}
+
 /* ----------------  Bug & Feature pages & Card pages --------------- */
 .card {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
@@ -111,6 +124,28 @@ legend {
 }
 
 /* ----------------------------------  Media */
+@media (min-width: 360px){
+    /* ------ Home page-------- */
+    #home-page-top .main-title h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 375px){
+    /* ------ Home page-------- */
+    #home-page-content .card-footer div a:first-of-type {
+        margin-right: 70px;
+    }
+}
+
+/* Ipad */
+@media (min-width: 375px) and (max-height: 1024px){
+    /* ------ Home page-------- */
+    #home-page-content .card-footer div a:first-of-type {
+        margin-right: 55px;
+    }
+}
+
 @media (min-width: 768px){
     /* ------ Navbar-------- */
     .navbar-expand-md .navbar-collapse {
@@ -125,5 +160,10 @@ legend {
     .nav-item > a:hover {
         color: white;
         text-decoration: underline;
+    }
+
+    /* ------ Home page-------- */
+    #home-page-top .main-title h1 {
+        font-size: 4.5rem;
     }
 }
