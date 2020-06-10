@@ -105,6 +105,11 @@ legend {
     color: #4e98c3;
 }
 
+/* ---------- Profile page ---------- */
+.username, .email {
+    color: #4e98c3;
+}
+
 /* ----------------------------------  Media */
 @media (min-width: 768px){
     /* ------ Navbar-------- */
