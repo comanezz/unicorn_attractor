@@ -69,8 +69,8 @@ footer {
     color: #4e98c3;
 }
 
-#all-bugs .card-text .bug-description,
-.card-title, #all-features .card-text .feature-description {
+#all-bugs .card-text .bug-description, #all-bugs .card-title,
+#all-features .card-title, #all-features .card-text .feature-description {
     height: 3em;
     overflow: hidden;
 }
