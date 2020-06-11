@@ -4,12 +4,28 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 from django.db.models import Count
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def all_features(request):
     """ View all feature list
     """
     features = Feature.objects.all().annotate(Count('comment__feature'))
+
+    paginator = Paginator(features, 6)
+
+    page = request.GET.get('page')
+
+    """ Avoid the error message 'That page number is not an integer'
+        Found the solution into Slack from jevgeni
+    """
+    try:
+        features = paginator.page(page)
+    except PageNotAnInteger:
+        features = paginator.page(1)
+    except EmptyPage:
+        features = paginator.page(paginator.num_pages)
+
     return render(request, "features.html", {'features': features})
 
 def feature_detail(request, pk, slug):

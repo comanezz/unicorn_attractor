@@ -70,7 +70,7 @@ footer {
 }
 
 #all-bugs .card-text .bug-description,
-.card-title, .card-text .feature-description {
+.card-title, #all-features .card-text .feature-description {
     height: 3em;
     overflow: hidden;
 }
@@ -83,6 +83,18 @@ footer {
 .add-bug-btn,
 .add-feature-btn {
     font-size: 16px;
+}
+
+.pagination-action {
+    margin: 0 0.1em;
+    display: inline-block;
+    padding: 0.5em;
+    font-size: 1.3em;
+    color: #b9b9b9;
+}
+
+.pagination-action:hover {
+    color: #3354AA;
 }
 
 /* ---------- Bug detail & Feature detail ---------- */

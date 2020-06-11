@@ -4,12 +4,28 @@ from .models import Bug, Comment
 from .forms import *
 from django.contrib import messages
 from django.db.models import Count
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def all_bugs(request):
     """ View all bug list
     """
     bugs = Bug.objects.all().annotate(Count('comment__bug'))
+
+    paginator = Paginator(bugs, 6)
+
+    page = request.GET.get('page')
+
+    """ Avoid the error message 'That page number is not an integer'
+        Found the solution into Slack from jevgeni
+    """
+    try:
+        bugs = paginator.page(page)
+    except PageNotAnInteger:
+        bugs = paginator.page(1)
+    except EmptyPage:
+        bugs = paginator.page(paginator.num_pages)
+
     return render(request, "bugs.html", {"bugs": bugs})
 
 def bug_detail(request, pk, slug):
