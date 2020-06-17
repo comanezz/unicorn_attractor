@@ -13,69 +13,70 @@
 {% endblock %}
 
 {% block content %}
-
-    <div class="row mb-3">
-        <div class="col">
-            <h1 class="mt-4 main-title">Checkout</h1>
+    <div id="checkout">
+        <div class="row mb-3">
+            <div class="col">
+                <h1 class="mt-4 main-title">Checkout</h1>
+            </div>
         </div>
-    </div>
 
-    {% for item in cart_items %}
-        {% if forloop.counter0|divisibleby:2 %} <div class="row"> {% endif %}
-            <div class="col-md-6">
-                <div class="card mb-5">
-                    <div class="card-body">
-                        <h3 class="card-title mt-1 border-bottom">{{ item.feature.title|truncatechars:29 }}</h3>
-                        <div class="card-text">
-                            <p class="feature-description">{{ item.feature.description|truncatewords:15 }}</p>
-                            <small><p class="feature-author"><span class="text-dark">Created by:</span> {{ item.feature.author|capfirst }}</p></small>
+        {% for item in cart_items %}
+            {% if forloop.counter0|divisibleby:2 %} <div class="row"> {% endif %}
+                <div class="col-md-6">
+                    <div class="card mb-5">
+                        <div class="card-body">
+                            <h3 class="card-title mt-1 border-bottom">{{ item.feature.title|truncatechars:29 }}</h3>
+                            <div class="card-text">
+                                <p class="feature-description">{{ item.feature.description|truncatewords:15 }}</p>
+                                <small><p class="feature-author"><span class="text-dark">Created by:</span> {{ item.feature.author|capfirst }}</p></small>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted justify-content-center">
+                            <form method="post" action="{% url 'adjust_cart' item.id %}">
+                                {% csrf_token %}
+                                <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                            </form>
                         </div>
                     </div>
-                    <div class="card-footer text-muted justify-content-center">
-                        <form method="post" action="{% url 'adjust_cart' item.id %}">
-                            {% csrf_token %}
-                            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
-                        </form>
-                    </div>
                 </div>
-            </div>
-        {%  if forloop.counter|divisibleby:2 or forloop.last %}</div>{% endif %}
-    {% endfor %}
+            {%  if forloop.counter|divisibleby:2 or forloop.last %}</div>{% endif %}
+        {% endfor %}
 
-    <div class="row">
-        <div class="col">
-            <h5 class="total mb-5">Your Total: <span class="fa fa-eur" aria-hidden="true"></span>{{ total }}</h5>
-        </div>
-    </div>
-    {% if cart_items %}
-        <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
-            <legend class="mb-3">Payment Details</legend>
-
-            <!-- However, if there is an error that comes back from Stripe,
-                we'll be able to display the stripe-error-message here. -->
-            <div id="credit-card-errors" style="display: none;">
-                <div class="alert alert-danger mb-3" id="stripe-error-message"></div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    {{ order_form | as_bootstrap }}
-                </div>
-            
-                <div class="form-group col-md-6">
-                    {{ payment_form | as_bootstrap }}
-                </div>
-            </div>
-
-            {% csrf_token %}
-            <div class="form-group col-md-12 pl-0">
-                <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
-            </div>
-        </form>
-    {% else %}
         <div class="row">
             <div class="col">
-                <h3>Your cart is empty!</h3>
+                <h5 class="total mb-5">Your Total: <span class="fa fa-eur" aria-hidden="true"></span>{{ total }}</h5>
             </div>
         </div>
-    {% endif %}
+        {% if cart_items %}
+            <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+                <legend class="mb-3">Payment Details</legend>
+
+                <!-- However, if there is an error that comes back from Stripe,
+                    we'll be able to display the stripe-error-message here. -->
+                <div id="credit-card-errors" style="display: none;">
+                    <div class="alert alert-danger mb-3" id="stripe-error-message"></div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        {{ order_form | as_bootstrap }}
+                    </div>
+                
+                    <div class="form-group col-md-6">
+                        {{ payment_form | as_bootstrap }}
+                    </div>
+                </div>
+
+                {% csrf_token %}
+                <div class="form-group col-md-12 pl-0">
+                    <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+                </div>
+            </form>
+        {% else %}
+            <div class="row">
+                <div class="col">
+                    <h3>Your cart is empty!</h3>
+                </div>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

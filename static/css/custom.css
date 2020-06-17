@@ -70,7 +70,9 @@ footer {
 }
 
 #all-bugs .card-text .bug-description, #all-bugs .card-title,
-#all-features .card-title, #all-features .card-text .feature-description {
+#all-features .card-title, #all-features .card-text .feature-description,
+#checkout .card-text .feature-description, #checkout .card-title,
+#cart .card-text .feature-description, #cart .card-title {
     height: 3em;
     overflow: hidden;
 }
