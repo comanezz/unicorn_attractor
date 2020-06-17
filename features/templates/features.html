@@ -49,25 +49,29 @@
         {%  if forloop.counter|divisibleby:2 or forloop.last %}</div>{% endif %}
 
     {% endfor %}
-
-    <div class="pagination d-inline-block">
-        {% if features.has_previous %}
-            <a href="?page=1" class="pagination-action"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
-            <a href="?page={{ features.previous_page_number }}" class="pagination-action"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-        {% endif %}
-
-        {% for num in features.paginator.page_range %}
-            {% if features.number == num %}
-                <strong>{{ num }}</strong>
-            {% elif num > features.number|add:'-3' and num < features.number|add:'3' %}
-                <span>{{ num }}</span>
-            {% endif %}
-        {% endfor %}
-
-        {% if features.has_next %}
-            <a href="?page={{ features.next_page_number }}" class="pagination-action"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-            <a href="?page={{ features.paginator.num_pages }}" class="pagination-action"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-        {% endif %}
+    
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <div class="pagination d-inline-block">
+                {% if features.has_previous %}
+                    <a href="?page=1" class="pagination-action"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                    <a href="?page={{ features.previous_page_number }}" class="pagination-action"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                {% endif %}
+        
+                {% for num in features.paginator.page_range %}
+                    {% if features.number == num %}
+                        <strong>{{ num }}</strong>
+                    {% elif num > features.number|add:'-3' and num < features.number|add:'3' %}
+                        <a href="?page={{ num }}"><span>{{ num }}</span></a>
+                    {% endif %}
+                {% endfor %}
+        
+                {% if features.has_next %}
+                    <a href="?page={{ features.next_page_number }}" class="pagination-action"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    <a href="?page={{ features.paginator.num_pages }}" class="pagination-action"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

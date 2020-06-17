@@ -85,6 +85,10 @@ footer {
     font-size: 16px;
 }
 
+.pagination {
+    font-size: 17px;
+}
+
 .pagination-action {
     margin: 0 0.1em;
     display: inline-block;
