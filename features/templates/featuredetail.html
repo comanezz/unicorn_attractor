@@ -87,8 +87,10 @@
                             <p class="comment-author"><b>{{ comment.author|capfirst }}</b></p>
                             <small>{{ comment.created_date }}</small>
                         </div>
-                        <p class=""><b>Comment:</b> {{ comment.context }}</p>
+                        <div>
+                            <p class=""><b>Comment:</b> {{ comment.context }}</p>
                         <small> {{ comment.feature_replies.count }} repl{{comment.feature_replies.count|pluralize:"y,ies"}} </small>
+                        </div>
                         <div class="comment-footer d-flex justify-content-center">
                             <button class="reply-btn btn btn-info btn-sm mb-2">Reply</button>
                         </div>
