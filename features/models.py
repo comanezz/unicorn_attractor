@@ -14,8 +14,8 @@ class Feature(models.Model):
     author = models.ForeignKey(User, related_name='author_feature', on_delete=models.CASCADE, null=True)
     upvotes = models.IntegerField(default=0)
 
-    STATUS_CHOICES = ( ('to do', 'to do'), ('Doing', 'Doing'), ('Done', 'Done') )
-    status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='to do')
+    STATUS_CHOICES = ( ('Pending', 'Pending'), ('In progress', 'In progress'), ('Done', 'Done') )
+    status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='Pending')
     
     def __str__(self):
         return self.title
