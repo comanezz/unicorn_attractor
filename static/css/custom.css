@@ -123,6 +123,11 @@ footer {
     margin-bottom: 25px;
 }
 
+.view-reply:hover {
+    color: #4e98c3;
+    text-decoration: underline;
+}
+
 /* ---------- Checkout page ---------- */
 legend {
     color: #555555;

@@ -92,8 +92,10 @@
                             <p class="comment-author"><b>{{ comment.author|capfirst }}</b></p>
                             <small>{{ comment.created_date }}</small>
                         </div>
-                        <p class=""><b>Comment:</b> {{ comment.context }}</p>
-                        <small> {{ comment.replies.count }} repl{{comment.replies.count|pluralize:"y,ies"}} </small>
+                        <div>
+                            <p class=""><b>Comment:</b> {{ comment.context }}</p>
+                        <small class="reply-btn view-reply"> {{ comment.replies.count }} repl{{comment.replies.count|pluralize:"y,ies"}} </small>
+                        </div>
                         <div class="comment-footer d-flex justify-content-center">
                             <button class="reply-btn btn btn-info btn-sm mb-2">Reply</button>
                         </div>
@@ -103,7 +105,7 @@
                         {% for reply in comment.replies.all %}
                         <div class="replied-comment">
                             <div class="comment-top d-flex justify-content-between">
-                                <p class="comment-author"><b>User:</b> {{ reply.author|capfirst }}</p>
+                                <p class="comment-author">{{ reply.author|capfirst }}</p>
                                 <small>{{ reply.created_date }}</small>
                             </div>
                             <p class=""><b>Comment:</b> {{ reply.context }}</p>
