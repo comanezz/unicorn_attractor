@@ -38,7 +38,7 @@ def feature_detail(request, pk, slug):
     feature = get_object_or_404(Feature, pk=pk, slug=slug)
 
     # Comment part
-    comments = Comment.objects.filter(feature=feature, reply=None).order_by('id')
+    comments = Comment.objects.filter(feature=feature, reply=None).order_by('-id')
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST or None)
