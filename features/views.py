@@ -16,9 +16,8 @@ def all_features(request):
 
     page = request.GET.get('page')
 
-    """ Avoid the error message 'That page number is not an integer'
-        Found the solution into Slack from jevgeni
-    """
+    # Avoid the error message 'That page number is not an integer'
+    #  Found the solution into Slack from jevgeni
     try:
         features = paginator.page(page)
     except PageNotAnInteger:

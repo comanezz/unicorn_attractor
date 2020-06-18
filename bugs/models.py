@@ -31,13 +31,12 @@ class Bug(models.Model):
         return reverse("bug_detail", args=[str(self.id), str(self.slug)])
 
     def save(self, *args, **kwargs):
-        """ This will automatically creates a slug when we create or edit a bug
-            Find on https://books.agiliq.com/projects/django-orm-cookbook/en/latest/slugfield.html
-        """
+        # This will automatically creates a slug when we create or edit a bug
+        # Find on https://books.agiliq.com/projects/django-orm-cookbook/en/latest/slugfield.html
         self.slug = slugify(self.title)
 
-        """ On save, update timestamps. Update the modified date when a post has been updated.
-        """
+        # On save, update timestamps. Update the modified date when a post has been updated.
+
         self.modified_date = timezone.now()
         super(Bug, self).save(*args, **kwargs)
 

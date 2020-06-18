@@ -8,17 +8,15 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def all_bugs(request):
-    """ View all bug list
-    """
+    """ View all bug list"""
     bugs = Bug.objects.all()
 
     paginator = Paginator(bugs, 6)
 
     page = request.GET.get('page')
 
-    """ Avoid the error message 'That page number is not an integer'
-        Found the solution into Slack from jevgeni
-    """
+    # Avoid the error message 'That page number is not an integer'
+    # Found the solution into Slack from jevgeni
     try:
         bugs = paginator.page(page)
     except PageNotAnInteger:

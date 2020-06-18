@@ -46,7 +46,7 @@ def registration(request):
         if registration_form.is_valid():
             registration_form.save()
 
-            """once weve created the user then we're just going to log the user in"""
+            # once weve created the user then we're just going to log the user in
             user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password1'])
             # Once the user has been authenticated we can log him in

@@ -26,18 +26,14 @@ class UserRegistrationForm(UserCreationForm):
             raise forms.ValidationError(u'Email address must be unique')
         return email
 
-    """
-        Allow me to make the email field mandatory
-        Source: https://stackoverflow.com/questions/5493096/django-user-model-email-field-how-to-make-it-mandatory
-    """
+    # Allow me to make the email field mandatory
+    # Source: https://stackoverflow.com/questions/5493096/django-user-model-email-field-how-to-make-it-mandatory
     def __init__(self, *args, **kwargs):
         super(UserRegistrationForm, self).__init__(*args, **kwargs)
         self.fields['email'].required = True
 
-    """
-        It was clean_password2 from the lesson but I remove the number 2
-        that allow me use password strengh otherwise it wasn't working and it shows error message now.
-    """
+    # It was clean_password2 from the lesson but I remove the number 2
+    # that allow me use password strengh otherwise it wasn't working and it shows error message now.
     def clean_password(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
