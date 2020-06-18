@@ -47,10 +47,10 @@ def checkout(request):
             if customer.paid:
                 messages.success(request, "You have successfully paid", extra_tags="alert alert-success")
 
-                # Allow us to add a +1 upvote when customer paid
+                # Allow us to add a +1 contributions when customer paid
                 for id, quantity in cart.items():
                     feature = get_object_or_404(Feature, pk=id)
-                    feature.upvotes += 1
+                    feature.contributions += 1
                     feature.save()
 
                 request.session['cart'] = {}
@@ -59,7 +59,7 @@ def checkout(request):
                 messages.error(request, "Unable to take payment", extra_tags="alert alert-danger")
         else:
             print(payment_form.errors)
-            messages.error(request, "We were unable to take a payment with that card!")
+            messages.error(request, "We were unable to take a payment with that card!", extra_tags="alert alert-danger")
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()

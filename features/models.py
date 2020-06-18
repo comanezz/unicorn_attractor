@@ -12,7 +12,8 @@ class Feature(models.Model):
     created_date = models.DateTimeField(editable=False, default=timezone.now)
     modified_date = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, related_name='author_feature', on_delete=models.CASCADE, null=True)
-    upvotes = models.IntegerField(default=0)
+    upvotes = models.ManyToManyField(User, blank=True, related_name="feature_upvotes")
+    contributions = models.IntegerField(default=0)
 
     STATUS_CHOICES = ( ('Pending', 'Pending'), ('In progress', 'In progress'), ('Done', 'Done') )
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='Pending')
@@ -23,6 +24,9 @@ class Feature(models.Model):
     # Ordered by the most recent modified date
     class Meta:
         ordering = ('-created_date',)
+
+    def total_upvotes(self):
+        return self.upvotes.count()
 
     def get_absolute_url(self):
         return reverse("feature_detail", args=[str(self.id), str(self.slug)])

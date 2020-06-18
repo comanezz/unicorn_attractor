@@ -65,7 +65,7 @@ footer {
 }
 
 /* ---------- All bugs & All features ---------- */
-.card-title, .card-body a {
+.card-title {
     color: #4e98c3;
 }
 
@@ -107,6 +107,18 @@ footer {
 .card-footer .container-fluid {
     padding-left: 0px;
     padding-right: 0px;
+}
+
+.upvote-form .btn:focus {
+    box-shadow: none;
+}
+
+.mybtn-blue {
+    color: #007bff;
+}
+
+.mybtn-red {
+    color: #dc3545;
 }
 
 /* ---- Comment section ---- */
