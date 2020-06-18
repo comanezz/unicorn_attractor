@@ -38,6 +38,11 @@
                             {{ feature.total_upvotes }} Vote{{ feature.total_upvotes | pluralize}}
                         </small>
                     </p>
+                    <p>
+                        <small>
+                            Contribution{{ feature.contributions|pluralize }}: {{ feature.contributions }}
+                        </small>
+                    </p>
                     <p><small>
                             Comment{{ feature.comments| pluralize }}: {{ feature.comments.count }}
                         </small>
