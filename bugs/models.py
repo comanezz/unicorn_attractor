@@ -42,7 +42,7 @@ class Bug(models.Model):
         super(Bug, self).save(*args, **kwargs)
 
 class Comment(models.Model):
-    bug = models.ForeignKey(Bug)
+    bug = models.ForeignKey(Bug, related_name="comments")
     author = models.ForeignKey(User)
     context = models.TextField(max_length=300)
     created_date = models.DateTimeField(default=timezone.now)

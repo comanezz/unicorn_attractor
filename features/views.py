@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def all_features(request):
     """ View all feature list
     """
-    features = Feature.objects.all().annotate(Count('comment__feature'))
+    features = Feature.objects.all()
 
     paginator = Paginator(features, 6)
 

@@ -39,7 +39,7 @@ class Feature(models.Model):
         super(Feature, self).save(*args, **kwargs)
 
 class Comment(models.Model):
-    feature = models.ForeignKey(Feature)
+    feature = models.ForeignKey(Feature, related_name="comments")
     author = models.ForeignKey(User, related_name='feature_comment_author')
     context = models.TextField(max_length=300)
     created_date = models.DateTimeField(default=timezone.now)

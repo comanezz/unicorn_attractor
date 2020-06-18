@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def all_bugs(request):
     """ View all bug list
     """
-    bugs = Bug.objects.all().annotate(Count('comment__bug'))
+    bugs = Bug.objects.all()
 
     paginator = Paginator(bugs, 6)
 
