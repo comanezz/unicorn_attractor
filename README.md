@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/comanezz/unicorn_attractor-milestone5.svg?branch=master)](https://travis-ci.org/comanezz/unicorn_attractor-milestone5)
