@@ -48,6 +48,8 @@
         {%  if forloop.counter|divisibleby:2 or forloop.last %}</div>{% endif %}
 
     {% endfor %}
+
+    {% for bug in bugs %}
     <div class="row">
         <div class="col d-flex justify-content-center">
             <div class="pagination d-inline-block">
@@ -71,5 +73,7 @@
             </div>
         </div>
     </div>
+    {% endfor %}
+    
 </div>
 {% endblock %}
