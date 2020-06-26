@@ -28,7 +28,7 @@
                     </a>
                     <div class="card-text">
                         <p class="feature-description">{{ feature.description|truncatewords:15 }}</p>
-                        <small><p class="feature-author"><span class="text-dark">Created by:</span> {{ feature.author|capfirst }}</p></small>
+                        <p class="feature-author"><small><span class="text-dark">Created by:</span> {{ feature.author|capfirst }}</small></p>
                         <p class="feature-created-date"><small>Published: {{ feature.created_date }}</small></p>
                     </div>
                 </div>
@@ -80,6 +80,6 @@
         </div>
     </div>
     {% endfor %}
-    
+
 </div>
 {% endblock %}

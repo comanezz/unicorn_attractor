@@ -27,7 +27,7 @@
                     <h3 class="card-title mt-1 pb-2 border-bottom">{{ feature.title }}</h3>
                     <div class="card-text">
                         <p class="feature-description">{{ feature.description }}</p>
-                        <small><p class="feature-author"><span class="text-dark">Created by:</span> {{ feature.author|capfirst }}</p></small>
+                        <p class="feature-author"><small><span class="text-dark">Created by:</span> {{ feature.author|capfirst }}</small></p>
                         <div>
                             <small>If you want this feature added to your account. Please <a href="{% url 'add_to_cart' feature.id %}">contribute</a>.</small>
                         </div>
