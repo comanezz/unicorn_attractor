@@ -69,6 +69,10 @@ footer {
     color: #4e98c3;
 }
 
+.card-body a:hover {
+    color: #4e98c3;
+}
+
 #all-bugs .card-text .bug-description, #all-bugs .card-title,
 #all-features .card-title, #all-features .card-text .feature-description,
 #checkout .card-text .feature-description, #checkout .card-title,
