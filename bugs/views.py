@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
 # Create your views here.
 def all_bugs(request):
     """ View all bug list"""
@@ -25,6 +26,7 @@ def all_bugs(request):
         bugs = paginator.page(paginator.num_pages)
 
     return render(request, "bugs.html", {"bugs": bugs})
+
 
 def bug_detail(request, pk, slug):
     """
@@ -53,7 +55,11 @@ def bug_detail(request, pk, slug):
             if reply_id:
                 comment_qs = Comment.objects.get(id=reply_id)
 
-            comment = Comment.objects.create(bug=bug, author=request.user, context=context, reply=comment_qs)
+            comment = Comment.objects.create(
+                bug=bug,
+                author=request.user,
+                context=context,
+                reply=comment_qs)
             comment.save()
             return redirect(bug.get_absolute_url())
     else:
@@ -68,6 +74,7 @@ def bug_detail(request, pk, slug):
 
     return render(request, "bugdetail.html", context)
 
+
 @login_required
 def create_or_edit_bug(request, pk=None, slug=None):
     """
@@ -77,10 +84,14 @@ def create_or_edit_bug(request, pk=None, slug=None):
     """
     bug = get_object_or_404(Bug, pk=pk) if pk else None
 
-    # if the user is not equal to the creator of the bug post he will not be able to edit the post
+    # if the user is not equal to the creator of the bug post
+    # he will not be able to edit the post
     if bug is not None:
         if bug.author != request.user:
-            messages.error(request, "This is not your post, you can't edit", extra_tags="alert alert-danger")
+            messages.error(
+                request,
+                "This is not your post, you can't edit",
+                extra_tags="alert alert-danger")
             return redirect(bug.get_absolute_url())
 
     if request.method == "POST":
@@ -95,9 +106,11 @@ def create_or_edit_bug(request, pk=None, slug=None):
 
     return render(request, 'bugform.html', {'form': form})
 
+
 @login_required
 def upvote_bug(request):
-    # Allow user to upvote or remove the vote from the bug. User have to be logged.
+    # Allow user to upvote or remove the vote from the bug.
+    # User have to be logged.
     bug = get_object_or_404(Bug, id=request.POST.get('bug_id'))
     if bug.upvotes.filter(id=request.user.id).exists():
         bug.upvotes.remove(request.user)

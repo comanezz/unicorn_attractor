@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .forms import UserLoginForm, UserRegistrationForm
 
+
 class TestUserLoginForm(TestCase):
 
     def test_login_without_password(self):
@@ -21,6 +22,7 @@ class TestUserLoginForm(TestCase):
         form = UserLoginForm({'form': ''})
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['password'], [u'This field is required.'])
+
 
 class TestUserRegistrationForm(TestCase):
 

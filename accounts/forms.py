@@ -3,21 +3,33 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
+
 class UserLoginForm(forms.Form):
     """Form to be used to log users in"""
 
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
+
 class UserRegistrationForm(UserCreationForm):
     """Form used to register a new user"""
 
-    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Password Confirmation", widget=forms.PasswordInput)
+    password1 = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label="Password Confirmation",
+        widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'username', 'password1', 'password2']
+        fields = [
+            'first_name',
+            'last_name',
+            'email',
+            'username',
+            'password1',
+            'password2']
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -27,7 +39,7 @@ class UserRegistrationForm(UserCreationForm):
         return email
 
     # Allow me to make the email field mandatory
-    # Source: https://stackoverflow.com/questions/5493096/django-user-model-email-field-how-to-make-it-mandatory
+    # https://stackoverflow.com/questions/5493096/django-user-model-email-field-how-to-make-it-mandatory
     def __init__(self, *args, **kwargs):
         super(UserRegistrationForm, self).__init__(*args, **kwargs)
         self.fields['email'].required = True
@@ -40,8 +52,8 @@ class UserRegistrationForm(UserCreationForm):
 
         if not password1 or not password2:
             raise ValidationError("Please confirm your password")
-        
+
         if password1 != password2:
             raise ValidationError("Passwords must match")
-        
+
         return password2

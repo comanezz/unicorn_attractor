@@ -8,7 +8,9 @@ from django.utils import timezone
 from features.models import Feature
 import stripe
 
+
 stripe.api_key = settings.STRIPE_SECRET
+
 
 @login_required()
 def checkout(request):
@@ -32,7 +34,7 @@ def checkout(request):
                     quantity=quantity
                 )
                 order_line_item.save()
-            
+
             try:
                 customer = stripe.Charge.create(
                     amount=int(total * 100),
@@ -42,10 +44,16 @@ def checkout(request):
                 )
 
             except stripe.error.CardError:
-                messages.error(request, "Your card was declined!", extra_tags="alert alert-danger")
-            
+                messages.error(
+                    request,
+                    "Your card was declined!",
+                    extra_tags="alert alert-danger")
+
             if customer.paid:
-                messages.success(request, "You have successfully paid", extra_tags="alert alert-success")
+                messages.success(
+                    request,
+                    "You have successfully paid",
+                    extra_tags="alert alert-success")
 
                 # Allow us to add a +1 contributions when customer paid
                 for id, quantity in cart.items():
@@ -56,12 +64,23 @@ def checkout(request):
                 request.session['cart'] = {}
                 return redirect(reverse('all_features'))
             else:
-                messages.error(request, "Unable to take payment", extra_tags="alert alert-danger")
+                messages.error(
+                    request,
+                    "Unable to take payment",
+                    extra_tags="alert alert-danger")
         else:
             print(payment_form.errors)
-            messages.error(request, "We were unable to take a payment with that card!", extra_tags="alert alert-danger")
+            messages.error(
+                request,
+                "We were unable to take a payment with that card!",
+                extra_tags="alert alert-danger")
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
-    
-    return render(request, "checkout.html", {"order_form": order_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
+
+    return render(
+        request,
+        "checkout.html",
+        {"order_form": order_form,
+            "payment_form": payment_form,
+            "publishable": settings.STRIPE_PUBLISHABLE})

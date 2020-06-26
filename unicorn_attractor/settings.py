@@ -29,7 +29,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [os.environ.get('HOSTNAME'), 'unicorn-attractor-aymeric.herokuapp.com']
+ALLOWED_HOSTS = [
+    os.environ.get('HOSTNAME'),
+    'unicorn-attractor-aymeric.herokuapp.com']
 
 
 # Application definition
@@ -149,8 +151,8 @@ if os.path.exists('env.py'):
 # If env.py does not exist use AWS S3 Static Files
 else:
     AWS_S3_OBJECT_PARAMETERS = {
-    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
-    'CacheControl': 'max-age=94608000'
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000'
     }
 
     AWS_STORAGE_BUCKET_NAME = 'aymeric-unicorn-attractor'

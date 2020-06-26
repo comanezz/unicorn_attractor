@@ -4,11 +4,12 @@ from features.models import Feature
 from django.contrib.messages import get_messages
 from checkout.forms import MakePaymentForm, OrderForm
 
+
 class CheckoutTestViews(TestCase):
     def setUp(self):
         User.objects.create_user(username='username', password='password')
         self.client.login(username='username', password='password')
-        
+
     def test_get_checkout_page(self):
         page = self.client.get("/checkout/")
         self.assertEqual(page.status_code, 200)
@@ -44,7 +45,10 @@ class CheckoutTestViews(TestCase):
 
         # https://stackoverflow.com/questions/2897609/how-can-i-unit-test-django-messages
         messages = list(get_messages(page.wsgi_request))
-        self.assertEqual(str(messages[0]), 'We were unable to take a payment with that card!')
+        self.assertEqual(
+            str(messages[0]),
+            'We were unable to take a payment with that card!')
+
 
 class CheckoutTestForms(TestCase):
 

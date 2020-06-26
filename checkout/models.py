@@ -1,6 +1,7 @@
 from django.db import models
 from features.models import Feature
 
+
 # Create your models here.
 class Order(models.Model):
     full_name = models.CharField(max_length=50, blank=False)
