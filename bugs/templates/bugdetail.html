@@ -91,13 +91,13 @@
                         <div class="comment-top d-flex justify-content-between">
                             <p class="comment-author"><b>{{ comment.author|capfirst }}</b></p>
                             <small>{{ comment.created_date }}</small>
-                        </div>
+                        </div> -->
                         <div>
                             <p class=""><b>Comment:</b> {{ comment.context }}</p>
-                        <small class="reply-btn view-reply"> {{ comment.replies.count }} repl{{comment.replies.count|pluralize:"y,ies"}} </small>
-                        </div>
-                        <div class="comment-footer d-flex justify-content-center">
-                            <button class="reply-btn btn btn-info btn-sm mb-2">Reply</button>
+                            <div class="d-flex justify-content-between">
+                                <small class="reply-btn view-reply"> {{ comment.replies.count }} repl{{comment.replies.count|pluralize:"y,ies"}} </small>
+                                <button class="reply-btn btn btn-info btn-sm mb-2">Reply</button>
+                            </div>
                         </div>
                     </div>
 
