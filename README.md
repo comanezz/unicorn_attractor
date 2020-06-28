@@ -4,29 +4,30 @@
 
 Milestone Project 4: Full Stack Framework with Django - Code Institute
 
-This website allow users who are using my software to report bugs and ask to work on features they would like to implement into the software. They are able to create bug/feature tickets, comment them and like them. To implement the feature they have to pay for a certain amount. 
+This website allows people who are using my software to report bugs and ask to work on new features they would like to have implemented. They are able to create bug/feature tickets, comment them and like them. To implement the feature they have to contribute for 20 euros. Feature with the most contributions will be handled first. This is how we are going to prioritize our workflow.
 
-This website helps me to show the skills that I learned how to build a full-stack website and manage data. 
+This website helps me to show the skills that I learned, how to build a full-stack website and manage data. 
 
 ## Demo
 
 A live demo can be found [here](https://unicorn-attractor-aymeric.herokuapp.com/).
 
 ## UX
-**The primary target audiences are users from unicorn software that they would like to submit bugs, feature request. Comments on posts if they want to sure their knowledge or ask for questions.**
+**The primary target audiences are Unicorn attractor software users that would like to submit bugs, request new features and comments on posts if they want to share their experience or ask questions.**
 
 #### User Stories:
 
-- A user have an issue in the software and wants to report it to fix it.
-- A user wants to implement a feature that will be good to improve the use of the software.
-- A user wants to see all the bug/feature tickets that have been created.
-- A user wants to discuss about a bug/feature ticket by using comments.
+- A user have an issue in the Unicorn attractor software and wants to report it to have it fixed.
+- A user wants to implement a new feature that will be good to improve the software.
+- A user wants to see all the bug tickets that have been created to see if the problem they encounter have already been mentioned.
+- A user wants to see all the feature tickets that have been created to see if the feature they would like to have has already been requested.
+- A user wants to comment on tickets (bug or feature) to discuss them or share with other user.
 
 #### Wireframes
 
-- [Home view](https://github.com/comanezz/unicorn_attractor-milestone5/tree/master/static/wireframes/home_wireframes.jpg)
-- [Page list view](https://github.com/comanezz/unicorn_attractor-milestone5/tree/master/static/wireframes/page_list_wireframes.jpg)
-- [Form view](https://github.com/comanezz/unicorn_attractor-milestone5/tree/master/static/wireframes/form_wireframes.jpg)
+- [Home view](https://github.com/comanezz/unicorn_attractor-milestone5/blob/master/static/wireframes/home_wireframe.jpg)
+- [Page list view](https://github.com/comanezz/unicorn_attractor-milestone5/blob/master/static/wireframes/page_list_wireframes.jpg)
+- [Form view](https://github.com/comanezz/unicorn_attractor-milestone5/blob/master/static/wireframes/form_wireframes.jpg)
 
 ## Features
 
@@ -37,39 +38,55 @@ A live demo can be found [here](https://unicorn-attractor-aymeric.herokuapp.com/
     - Logo navigate to the home page. 
     - All others button redirect the user to the appropriate page.
 
+**Home page**
+
+This page present a brief description of the website and what the user will be able to do. It allows the user to see what can be done regarding bugs and how to see/create a ticket. It also allows the user to understand what can be done for new features and how to see/create them. For each bug or feature section, there is two shortcut button possible: View tickets/requests or create ticket/request.
+
 **Bug / Feature List page**
-This page allows the users to view all the bugs/features that has been created by user. They can see relevant information related to a specific bug as number of: comments, votes, contributions and the status. But they do not see the full title or description of the ticket.
-If user is logged, he have the possibility to create a new bug/ticket ticket. 
-If there is too many bugs/features list, there is a pagination allowing user to navigate between pages.
+
+This page allows the user to view all the bugs/features that have been created by users. They can see relevant information related to a specific bug/feature as number of: comments, votes, contributions and the status. But they do not see the full title or description of the ticket.
+If a user is logged, he has the possibility to create a new bug/feature ticket.
+If there is too many bugs/features listed, a pagination allowing user to navigate between pages will appears.
+If a user is not logged, he can still click on new ticket button but he will be redirected to the log in form.
 
 **Bug detail page**
-This page allows users to the the bug ticket in full. Meaning that they will see the full title and description. Also the user can see all the comments and replies that has been posted.
-If user is logged, he can upvote or downvote the ticket and comment or replies comments. 
-If the user is the author of the ticket, he is able to edit that ticket.
+
+This page allows the user to see the bug ticket in details. Meaning that they will see the full title and description. Also the user can see all the comments and replies that have been posted.
+If the user is logged, he can upvote or downvote the ticket, comment or reply to comments. 
+If the user is the author of the ticket, he is able to edit that ticket. Otherwise, no edit to the ticket is possible.
+If the user is not logged in, he will not be able to upvote or use the comment section. However he will still be able to read comments and replies.
 
 **Feature detail page**
-This page allows users to the the feature ticket in full. Meaning that they will see the full title and description. Also the user can see all the comments and replies that has been posted.
-If user is logged, he can upvote or downvote the ticket and comment or replies comments. He can also contribute to the feature if he wants to add it into his software.
-If the user is the author of the ticket, he is able to edit that ticket.
+This page allows the user to see the feature ticket in details. Meaning that they will see the full title and description. Also the user can see all the comments and replies that have been posted.
+If the user is logged, he can upvote or downvote the ticket, comment or reply to comments. He can also contribute to features he wants to see implemented.
+If the user is the author of the ticket, he is able to edit that ticket. Otherwise, no edit to the ticket is possible.
+If the user is not logged in, he will not be able to upvote or use the comment section. However he will still be able to read comments and replies.
 
 **Profile page**
-This page allows the user when logged to see his personnal informations as username, email and the date that he first joined the website. Also he is able to see how many bugs/features tickets he has created. 
+
+This page allows the logged in users to see their personnal informations as: username, email and the date that they first joined the website. Also the user is able to see how many bugs/features tickets he has created. 
+If the user is not logged in, no profile page button will appear.
 
 **Register page**
+
 This page allows the user to create an account and be able to login into the website. 
 
 **Login page**
+
 This page allows the user to login into the website or reset his password. 
 
 **Cart page**
-This page allows the user to see what feature tickets have been added to the cart and allowing to go to the checkout page to pay.
+
+This page allows the user to see all feature tickets added to their cart and allow them to proceed to checkout and pay.
 
 **Checkout page**
-This page allows to pay for the items selected. 
+
+This page allows the user to pay for the selected items. 
 
 ### Features Left to Implement
-- In the bug/feature detail page. When we click on the reply button, the reply section opens and close when uou have added a comment. Then, you have to click on the reply button again to see the new comment added. Maybe add a feature where the reply section stays open when we add a new comment. 
+- In the bug/feature detail page. When we click on the reply button, the reply section opens and close when you have added a comment. Then, you have to click on the reply button again to see the new comment added. Maybe add a feature where the reply section stays open when we add a new comment. 
 - Add history of purchase into the profile page. 
+- On profile account, add the possibility to modify the email of the user. If the user need to change his email address but still keep his current account instead of creating a new one.  
 
 ## Technologies Used
 
@@ -99,17 +116,17 @@ This page allows to pay for the items selected.
 
 - Cart app
     - Tried to add more than 1 same feature into the cart at a time, error message is displayed if same feature is already added in the basket.
-    - Check to deleting an item from the cart. Item is removed.
+    - Check if deleting an item from the cart is possible. Item removed.
 
 - Checkout app
     - Check that the checkout page shows the right number of items selected.
 
 - Bugs / Features app
-    - Try to upvotes and downvote the ticket. Make sure that it adds +1 to the vote section.
+    - Try to upvotes and downvote the ticket. Make sure that it adds +1/-1 to the vote section.
     - Try to add comments and replies. Which add +1 into the comments section everytime a comment or reply has been added.
 
 - Account app
-    - Make sure that the profile page shows correct information about user.
+    - Make sure that the profile page shows the correct information about the user.
     - Make sure that the profile page shows the numbers of tickets created by user.
     - Make sure that the user is able to reset his password.
 
