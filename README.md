@@ -26,8 +26,8 @@ A live demo can be found [here](https://unicorn-attractor-aymeric.herokuapp.com/
 #### Wireframes
 
 - [Home view](https://github.com/comanezz/unicorn_attractor-milestone5/blob/master/static/wireframes/home_wireframe.jpg)
-- [Page list view](https://github.com/comanezz/unicorn_attractor-milestone5/blob/master/static/wireframes/page_list_wireframes.jpg)
-- [Form view](https://github.com/comanezz/unicorn_attractor-milestone5/blob/master/static/wireframes/form_wireframes.jpg)
+- [Page list view](https://github.com/comanezz/unicorn_attractor-milestone5/blob/master/static/wireframes/page_list_wireframe.jpg)
+- [Form view](https://github.com/comanezz/unicorn_attractor-milestone5/blob/master/static/wireframes/form_wireframe.jpg)
 
 ## Features
 
