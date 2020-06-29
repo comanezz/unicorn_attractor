@@ -109,8 +109,9 @@ def create_or_edit_bug(request, pk=None, slug=None):
 
 @login_required
 def upvote_bug(request):
-    # Allow user to upvote or remove the vote from the bug.
-    # User have to be logged.
+    """ Allow user to upvote or remove the vote from the bug.
+         User have to be logged.
+    """
     bug = get_object_or_404(Bug, id=request.POST.get('bug_id'))
     if bug.upvotes.filter(id=request.user.id).exists():
         bug.upvotes.remove(request.user)

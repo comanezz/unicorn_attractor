@@ -39,9 +39,11 @@ class Feature(models.Model):
         ordering = ('-created_date',)
 
     def total_upvotes(self):
+        """ Return total upvote """
         return self.upvotes.count()
 
     def get_absolute_url(self):
+        """ Return a string with args. Id and slug """
         return reverse("feature_detail", args=[str(self.id), str(self.slug)])
 
     def save(self, *args, **kwargs):

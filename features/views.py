@@ -111,8 +111,9 @@ def create_or_edit_feature(request, pk=None, slug=None):
 
 @login_required
 def upvote_feature(request):
-    # Allow user to upvote or remove the vote from the feature.
-    # User have to be logged.
+    """ Allow user to upvote or remove the vote from the feature.
+        User have to be logged.
+    """
     feature = get_object_or_404(Feature, id=request.POST.get('feature_id'))
     if feature.upvotes.filter(id=request.user.id).exists():
         feature.upvotes.remove(request.user)
