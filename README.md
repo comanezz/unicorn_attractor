@@ -176,8 +176,11 @@ To cut ties with this GitHub repository, type `git remote rm origin` into the te
 ### Acknowledgements
 - Thanks to the following Youtubers who helped build this website:
     - [Abhishek Verma](https://www.youtube.com/channel/UCOPiE8TU4cphHqeOkos-J5A)
+        - Helped me with comments, reply, upvote and other things.
     - [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ)
+        - Helped me understand how annotation works and also the function vars() which is really helpful to see value it returns.
     - [Samuli Natri](https://www.youtube.com/channel/UC_F-PRC-SXbaGj_kmMZSotA)
+        - Helped me with pagination.
 
 - Useful link that helped me:
     - [Help me learn about url pattern with primary key and slug fields.](https://simpleisbetterthancomplex.com/references/2016/10/10/url-patterns.html)
