@@ -86,7 +86,8 @@ This page allows the user to pay for the selected items.
 ### Features Left to Implement
 - In the bug/feature detail page. When we click on the reply button, the reply section opens and close when you have added a comment. Then, you have to click on the reply button again to see the new comment added. Maybe add a feature where the reply section stays open when we add a new comment. 
 - Add history of purchase into the profile page. 
-- On profile account, add the possibility to modify the email of the user. If the user need to change his email address but still keep his current account instead of creating a new one.  
+- On profile account, add the possibility to modify the email of the user. If the user need to change his email address but still keep his current account instead of creating a new one.
+- I would like to merge two apps into one app for example feature and bug because they are very similar. 
 
 ## Technologies Used
 
