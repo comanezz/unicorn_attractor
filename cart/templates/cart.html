@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-muted justify-content-center">
-                            <form method="post" action="{% url 'adjust_cart' item.id %}">
+                            <form method="post" action="{% url 'delete_item' item.id %}">
                                 {% csrf_token %}
                                 <button class="btn btn-sm btn-danger" type="submit">Delete</button>
                             </form>

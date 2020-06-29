@@ -37,7 +37,7 @@ def add_to_cart(request, id):
 
 
 @login_required()
-def adjust_cart(request, id):
+def delete_item(request, id):
     """
     Remove the item
     """
