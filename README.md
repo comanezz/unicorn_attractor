@@ -133,6 +133,8 @@ This page allows the user to pay for the selected items.
 ### Issue found
 - Coverage html not working properly. It is showing wrong data saying that a lots of things is missing and also does not show all the test files added after the first command coverage html. Checked with tutors, they were not able to help regarding that and mentioned that it was not a big deal as long as I run enough test.
 
+- When we go to the password reset confirm page. When we use DevTool and switch to see the mobile view the page is not responsive. But it is if we access directly from a mobile. For example when we click on the reset link from the mobile directly the page is responsive. 
+
 ## Deployment
 - Project was deployed to heroku. 
 
