@@ -33,7 +33,7 @@ def add_to_cart(request, id):
             extra_tags="alert alert-success")
 
     request.session['cart'] = cart
-    return redirect('all_features')
+    return redirect(reverse('view_cart'))
 
 
 @login_required()
